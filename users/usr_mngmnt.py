@@ -85,7 +85,7 @@ def register():
             csv_writer = csv.writer(file)
             csv_writer.writerow([username, password])
             print("Utworzono użytkownika, odpal program ponownie aby się zalogować")
-            exit()
+            return False
     else:
         print("""\n\n-----------------\nPodane hasła sie nie zgadzają lub hasło jest zbyt mało bezpieczne 
         \n wymagania co do bezpiecznego hasła to przynajmniej 6 znaków, 
