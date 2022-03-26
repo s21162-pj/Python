@@ -1,6 +1,6 @@
 import os
 import sys
-from usr_mngmnt import login, list, sortalph, register, delete_user
+from users.usr_mngmnt import login, list, sortalph, register, delete_user
 
 def check_db_exists(path):
     try:

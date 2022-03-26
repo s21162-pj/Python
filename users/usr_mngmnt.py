@@ -5,7 +5,7 @@ import sys
 import getpass
 
 current_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
-db_path = os.path.join(current_dir, "db.csv")
+db_path = os.path.join(current_dir, "./db.csv")
 
 def check_db_exists(path):
     try:
