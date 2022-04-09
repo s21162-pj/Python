@@ -1,10 +1,8 @@
-import os
-import sys
 # from users.users_service import login, register, delete
 # from database.database import roomCreate
 import getpass
-import bcrypt
 import uuid
+import bcrypt
 from database.users_model import User
 from users.users_service import UserService
 from database.room import Room
@@ -38,9 +36,9 @@ if __name__ == '__main__':
             service.delete_user(User(id, nametodelete, password))
             #service.delete_user(usr2)
         if menu2 == 3:
-            room_password = input("Podaj hasło dostępu do pokoju: ")
+            room_password = getpass.getpass("Podaj hasło dostępu do pokoju: ")
             room_id = uuid.uuid4()
-            r1 = Room(room_id, room_password, usr1.name)
+            r1 = Room(room_id, bcrypt.hashpw(bytes(room_password, 'utf-8'), bcrypt.gensalt()), usr1.name)
             r1.create()
         if menu2 == 4:
             # TODO: Dodawanie userów do listy
@@ -57,10 +55,6 @@ if __name__ == '__main__':
             room_id = input("Podaj id pokoju który ma zostać usunięty:")
             room = Room()
             room.delete_room(room_id)
-
-
-
-
 
 
     if menu == 2:

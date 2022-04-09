@@ -29,7 +29,7 @@ class UserService(DatabasePermission):
         with open(db_path, 'r', newline='') as file:
             csv_reader = csv.reader(file)
             for usernames, passwords in csv_reader:
-                if obj.name.casefold() == usernames.casefold() and obj.password == passwords: #and bcrypt.checkpw(obj.password, bytes(usernames, passwords[1], 'utf-8')):
+                if obj.name.casefold() == usernames.casefold() and bcrypt.checkpw(obj.password.encode('utf-8'), passwords.encode('utf-8')):
                     print("Jesteś zalogowany!")
                     obj.login_status = True
                     logged = True

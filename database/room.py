@@ -22,7 +22,7 @@ class Room:
         if valid:
             with open(rooms_path, 'a', newline='\n') as file:
                 csv_writer = csv.writer(file)
-                csv_writer.writerow([self.room_id, self.password, self.user_admin, self.users_list])
+                csv_writer.writerow([self.room_id, self.password.decode(), self.user_admin, self.users_list])
                 print("Utworzono pokój o ID:", self.room_id, "Użytkownika:", self.user_admin)
 
     def join(self, obj, room_id, password):
