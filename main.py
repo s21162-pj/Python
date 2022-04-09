@@ -43,7 +43,6 @@ if __name__ == '__main__':
         if menu2 == 4:
             # TODO: Dodawanie userów do listy
 
-
             room_id = input("Wklej lub wpisz unikalne id pokoju:")
             room_password = input("Podaj hasło dostępu do pokoju: ")
             r1 = Room(room_id, room_password, usr1.name)
@@ -51,10 +50,12 @@ if __name__ == '__main__':
 
         if menu2 == 5:
             # TODO: USUWANIE POKOJU
-            service.add_user_access(usr1)
-            room_id = input("Podaj id pokoju który ma zostać usunięty:")
             room = Room()
-            room.delete_room(room_id)
+            room_to_delete = input("Podaj id pokoju który ma zostać usunięty:")
+            service.add_user_access(usr1)
+            room.delete_room(Room(room_to_delete,password,usr1))
+
+
 
 
     if menu == 2:

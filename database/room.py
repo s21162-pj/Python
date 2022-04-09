@@ -1,8 +1,9 @@
 import os
 import sys
 import csv
+import bcrypt
 from database.valid import password_validation
-
+from database.database import DatabasePermission
 current_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
 rooms_path = os.path.join(current_dir, "./rooms.csv")
 
@@ -25,15 +26,11 @@ class Room:
                 csv_writer.writerow([self.room_id, self.password.decode(), self.user_admin, self.users_list])
                 print("Utworzono pokój o ID:", self.room_id, "Użytkownika:", self.user_admin)
 
-    def join(self, obj, room_id, password):
-        if room_id == self.room_id and password == self.password:
+    def join(self, obj, password):
+        if password == self.password:
             if obj.login_status:
                 self.users_list.append(obj.name)
-                #TODO: Dopisać do CV
-                with open(rooms_path, 'w', newline='') as file:
-                    csv_writer = csv.writer(file)
-                    csv_writer.writerows(obj,self.users_list)
-
+                # TODO: Dopisać do listy
                 print("Użytkownik został dodany do pokoju")
             else:
                 print("Ten uzytkownik nie jest zalogowany")
@@ -48,7 +45,7 @@ class Room:
             for row in csv_reader:
                 lines.append(row)
                 for field in row:
-                    if field == obj.room_id:
+                    if field == obj:
                         lines.remove(row)
 
         with open(rooms_path, 'w', newline='') as file:
