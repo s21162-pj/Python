@@ -42,7 +42,7 @@ if __name__ == '__main__':
             r1.create()
         if menu2 == 4:
             # TODO: Dodawanie userów do listy
-            # TODO: HASLA
+
 
             room_id = input("Wklej lub wpisz unikalne id pokoju:")
             room_password = input("Podaj hasło dostępu do pokoju: ")
